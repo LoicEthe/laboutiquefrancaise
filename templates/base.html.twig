@@ -40,7 +40,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Nos produits</a>
+                    <a class="nav-link" href="{{ path('products') }}">Nos produits</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Qui sommes-nous ?</a>
@@ -48,9 +48,12 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Contact</a>
                 </li>
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                </li>
             </ul>
             <div class="navbar-item-custom">
+
                 {% if app.user %}
                     <a href="{{ path('account') }}">Mon compte </a> | <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
