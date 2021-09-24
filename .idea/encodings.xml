@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/Controller/OrderSuccessController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/account/order.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/account/order_show.html.twig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../../../../../xampp/php/ext/php_intl.dll" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>

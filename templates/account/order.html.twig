@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes commandes - La Boutique Française{% endblock %}
+{% block title %}Mes commandes - La Boutique FranÃ§aise{% endblock %}
 
 {% block content %}
     <h1>Mes commandes</h1>
-    C'est dans cet espace que vous allez pouvoir gérer toutes vos commandes.<br/>
+    C'est dans cet espace que vous allez pouvoir gÃ©rer toutes vos commandes.<br/>
     <a href="{{ path('account') }}">Retour</a>
     {% if orders|length == 0 %}
         <hr>
         <p class="text-center">
-            Vous n'avez pas encore passé de commande sur La Boutique Française.
+            Vous n'avez pas encore passÃ© de commande sur La Boutique FranÃ§aise.
         </p>
     {% else %}
         <table class="table mt-4">
             <thead>
             <tr>
-                <th scope="col">Référence</th>
-                <th scope="col">Passée le</th>
+                <th scope="col">RÃ©fÃ©rence</th>
+                <th scope="col">PassÃ©e le</th>
                 <th scope="col">Produit(s)</th>
                 <th scope="col">Total</th>
                 <th scope="col"></th>
@@ -28,7 +28,7 @@
                     <td><span class="badge badge-secondary">{{ order.reference }}</span></td>
                     <td>{{ order.createdAt|date('d/m/Y') }}</td>
                     <td>{{ order.orderDetails|length }}</td>
-                    <td>{{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2, ',', '.') }} €</td>
+                    <td>{{ ((order.carrierPrice + order.getTotal) / 100)|number_format(2, ',', '.') }} â‚¬</td>
                     <td class="text-right"><a href="{{ path('account_order_show',{'reference': order.reference}) }}">Voir ma commande</a></td>
                 </tr>
             {% endfor %}

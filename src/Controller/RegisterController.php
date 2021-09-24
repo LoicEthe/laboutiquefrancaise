@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Mail;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,6 +26,8 @@ class RegisterController extends AbstractController
      */
     public function index(Request $request,UserPasswordHasherInterface $encoder): Response
     {
+
+        $notification = null;
         $user = new User();
         $form = $this->createForm(RegisterType::class,$user);
 
@@ -34,16 +37,32 @@ class RegisterController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $user = $form->getData();
 
-            $password = $encoder->hashPassword($user,$user->getPassword()); // CRYPTAGE DU PASSWORD
-            $user->setPassword($password); // REINJECTION DU PASSWORD AVEC LA VARIABLE CRYPTEE
 
-            $this->entityManager->persist($user); // persist va figer la data dans la variable mais pour la création
-            $this->entityManager->flush(); // flush va l'envoyer
+            $search_email = $this->entityManager->getRepository(User::class)->findOneByEmail($user->getEmail());
+
+            if(!$search_email){
+                $password = $encoder->hashPassword($user,$user->getPassword()); // CRYPTAGE DU PASSWORD
+                $user->setPassword($password); // REINJECTION DU PASSWORD AVEC LA VARIABLE CRYPTEE
+
+                $this->entityManager->persist($user); // persist va figer la data dans la variable mais pour la création
+                $this->entityManager->flush(); // flush va l'envoyer
+                $notification = "Merci de vous être inscrit, vous pouvez vous connecter";
+
+            }else{
+                $notification = "L email existe deja";
+            }
+
+
+            // envoi du mail de confirmation d'inscription
+            $mail = new Mail();
+            $content = "Bonjour ".$user->getFirstname()."<br/>Bienvenue sur la premiere boutique fr";
+            $mail->send($user->getEmail(),$user->getFirstname(),'Bienvenue sur la Boutique Française',$content);
 
         }
 
         return $this->render('register/index.html.twig',[
-            'form'=> $form->createView()
+            'form'=> $form->createView(),
+            'notification' => $notification
         ]);
     }
 }
