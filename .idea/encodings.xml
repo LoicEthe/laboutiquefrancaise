@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/Controller/OrderSuccessController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/templates/account/order.html.twig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/templates/account/order_show.html.twig" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/templates/product/single_product.html.twig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../../../../../xampp/php/ext/php_intl.dll" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
